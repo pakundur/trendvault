@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+.env
+.env.*
+preview.html
+preview.js
+preview.css
+probe.cjs
+isolate.mjs
+smoke.out

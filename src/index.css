@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* ---- dithercn tokens (from registry item: dither-tokens) ---- */
+@layer base {
+  :root {
+    --dither-ink: var(--primary);
+    --dither-paper: var(--background);
+    --dither-cell: 3px;
+    --dither-color-blue: oklch(0.56 0.18 248);
+    --dither-color-purple: oklch(0.53 0.22 302);
+    --dither-color-green: oklch(0.58 0.15 152);
+    --dither-color-pink: oklch(0.58 0.21 355);
+    --dither-color-orange: oklch(0.64 0.17 52);
+    --dither-color-red: oklch(0.55 0.21 27);
+    --dither-color-grey: oklch(0.55 0 0);
+    --dither-bloom: 0.6;
+
+    --background: oklch(0.99 0 0);
+    --foreground: oklch(0.18 0.01 260);
+    --primary: oklch(0.18 0.01 260);
+    --primary-foreground: oklch(0.99 0 0);
+    --muted: oklch(0.96 0.003 260);
+    --muted-foreground: oklch(0.5 0.01 260);
+    --border: oklch(0.9 0.005 260);
+    --card: oklch(1 0 0);
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --dither-ink: var(--primary);
+    --dither-paper: var(--background);
+    --dither-cell: 3px;
+    --dither-color-blue: oklch(0.72 0.14 240);
+    --dither-color-purple: oklch(0.7 0.18 304);
+    --dither-color-green: oklch(0.78 0.15 152);
+    --dither-color-pink: oklch(0.72 0.18 355);
+    --dither-color-orange: oklch(0.78 0.15 60);
+    --dither-color-red: oklch(0.68 0.2 25);
+    --dither-color-grey: oklch(0.7 0 0);
+
+    --background: oklch(0.13 0.008 260);
+    --foreground: oklch(0.96 0.003 260);
+    --primary: oklch(0.96 0.003 260);
+    --primary-foreground: oklch(0.13 0.008 260);
+    --muted: oklch(0.2 0.01 260);
+    --muted-foreground: oklch(0.65 0.01 260);
+    --border: oklch(0.26 0.01 260);
+    --card: oklch(0.16 0.009 260);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-dither-ink: var(--dither-ink);
+  --color-dither-paper: var(--dither-paper);
+  --color-dither-blue: var(--dither-color-blue);
+  --color-dither-purple: var(--dither-color-purple);
+  --color-dither-green: var(--dither-color-green);
+  --color-dither-pink: var(--dither-color-pink);
+  --color-dither-orange: var(--dither-color-orange);
+  --color-dither-red: var(--dither-color-red);
+  --color-dither-grey: var(--dither-color-grey);
+  --radius-lg: var(--radius);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--dither-color-purple);
+  color: white;
+}
+
+/* utility */
+.container-x {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
